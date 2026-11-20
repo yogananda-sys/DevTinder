@@ -12,6 +12,7 @@
 - Differences between caret and tilde (^ vs ~) : Ex = 5.3.0 (5 - Major, 3 - Minor, 0 - Patch)
   => ^ Auto upadte for any minor and patch changes happended
   => ~ Auto Update only patch changes happended
+<<<<<<< HEAD
 
 - Initialize git
 - .gitignore
@@ -25,3 +26,5 @@
 - Use of regex in routes /a/, /.*fly$/
 - Reading the query params in the routes
 - Reading the dynamic routes
+=======
+>>>>>>> 4ce1028448b4e8842a365f3cdcb54f24af2a9c47
