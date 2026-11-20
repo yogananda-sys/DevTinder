@@ -24,5 +24,4 @@
 - Explore routing and use of ?, \*, (), + in the routes
 - Use of regex in routes /a/, /.\*fly$/
 - Reading the query params in the routes
-- # Reading the dynamic routes
-  > > > > > > > 4ce1028448b4e8842a365f3cdcb54f24af2a9c47
+- Reading the dynamic routes
