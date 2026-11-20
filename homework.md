@@ -12,7 +12,6 @@
 - Differences between caret and tilde (^ vs ~) : Ex = 5.3.0 (5 - Major, 3 - Minor, 0 - Patch)
   => ^ Auto upadte for any minor and patch changes happended
   => ~ Auto Update only patch changes happended
-<<<<<<< HEAD
 
 - Initialize git
 - .gitignore
@@ -22,9 +21,8 @@
 - Order of the routes matter a lot
 - Install postman app and make a workspace/collection > test API call
 - Write logic to handle GET, POST, PUT, PATCH, DELETE API calls and test them on Postman
-- Explore routing and use of ?, *, (), + in the routes
-- Use of regex in routes /a/, /.*fly$/
+- Explore routing and use of ?, \*, (), + in the routes
+- Use of regex in routes /a/, /.\*fly$/
 - Reading the query params in the routes
-- Reading the dynamic routes
-=======
->>>>>>> 4ce1028448b4e8842a365f3cdcb54f24af2a9c47
+- # Reading the dynamic routes
+  > > > > > > > 4ce1028448b4e8842a365f3cdcb54f24af2a9c47
