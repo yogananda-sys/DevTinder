@@ -18,6 +18,19 @@ app.post("/signup", async (req, res) => {
   }
 });
 
+// Get user by ID
+app.get("/userId", async (req, res) => {
+  const userId = req.body.userId;
+  console.log(userId);
+  try {
+    const user = await User.findById({ _id: userId }).exec();
+    // const user = await User.findById(userId).exec();
+    res.send(user);
+  } catch (err) {
+    res.status(400).send("Something went wrong!");
+  }
+});
+
 // Get user by email
 app.get("/user", async (req, res) => {
   const userEmail = req.body.emailId;
