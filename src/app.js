@@ -5,20 +5,16 @@ const connectDB = require("./config/database");
 const { User } = require("./models/user");
 
 const app = express();
+app.use(express.json());
 
 app.post("/signup", async (req, res) => {
-  // Creating a new instance of the User model
-  const user = new User({
-    firstName: "Sachin",
-    lastName: "Tendulkar",
-    emailId: "Sachin@mail.com",
-    password: "Sachin@!23",
-  });
+  console.log(req.body);
+  const user = new User(req.body);
   try {
     await user.save();
     res.send("User added to DB Successfully..");
   } catch (err) {
-    res.status(400).send("Error saving the user :", + err.message);
+    res.status(400).send("Error saving the user! : " + err.message);
   }
 });
 
@@ -32,6 +28,22 @@ connectDB()
   .catch((err) => {
     console.error("Database can't be connected!!");
   });
+
+//   app.post("/signup", async (req, res) => {
+//   // Creating a new instance of the User model
+//   const user = new User({
+//     firstName: "Sachin",
+//     lastName: "Tendulkar",
+//     emailId: "Sachin@mail.com",
+//     password: "Sachin@!23",
+//   });
+//   try {
+//     await user.save();
+//     res.send("User added to DB Successfully..");
+//   } catch (err) {
+//     res.status(400).send("Error saving the user :", + err.message);
+//   }
+// });
 
 // app.use("/", (err, req, res, next) => {
 //   if (err) {
