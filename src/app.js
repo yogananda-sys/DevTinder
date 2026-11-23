@@ -67,7 +67,7 @@ app.get("/feed", async (req, res) => {
 });
 
 // Delete a user
-app.delete("/delete", async (req, res) => {
+app.delete("/user", async (req, res) => {
   const id = req.body.id;
   console.log(id);
   try {
@@ -84,23 +84,25 @@ app.delete("/delete", async (req, res) => {
 });
 
 //Update a user
-app.patch("/update", async (req, res) => {
+app.patch("/user", async (req, res) => {
   const userId = req.body.userId;
   const data = req.body;
   try {
-    const user = await User.findByIdAndUpdate(userId, data);
+    const user = await User.findByIdAndUpdate(userId, data, {
+      runValidators: true,
+    });
     if (!user) {
       res.send("User not found");
     } else {
       res.send("User updated successfylluy!!");
     }
   } catch (err) {
-    res.send("Something went wrong");
+    res.send("Something went wrong" + err.message);
   }
 });
 
 //Update a user by options
-app.patch("/updateOpt", async (req, res) => {
+app.patch("/userOpt", async (req, res) => {
   const userId = req.body.userId;
   const data = req.body;
   try {
@@ -119,7 +121,7 @@ app.patch("/updateOpt", async (req, res) => {
 });
 
 //Update a user by email ID
-app.patch("/updatemail", async (req, res) => {
+app.patch("/useremail", async (req, res) => {
   const userEmail = req.body.emailId;
   const data = req.body;
   try {
