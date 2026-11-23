@@ -1,30 +1,60 @@
 const express = require("express");
 const { error } = require("node:console");
 
+const connectDB = require("./config/database");
+const { User } = require("./models/user");
+
 const app = express();
 
-app.use("/", (err, req, res, next) => {
-  if (err) {
-    res.status(501).send("Something went wrong");
+app.post("/signup", async (req, res) => {
+  // Creating a new instance of the User model
+  const user = new User({
+    firstName: "Sachin",
+    lastName: "Tendulkar",
+    emailId: "Sachin@mail.com",
+    password: "Sachin@!23",
+  });
+  try {
+    await user.save();
+    res.send("User added to DB Successfully..");
+  } catch (err) {
+    res.status(400).send("Error saving the user :", + err.message);
   }
 });
 
-app.get("/getUserData", (req, re) => {
-  // try {
-    // Logic of DB call and get user data
-    throw new error("sdfggdf");
-    res.send("User data sent");
-  // } catch (err) {
-  //   res.status(500).send("Some error contact support team");
-  // }
-});
+connectDB()
+  .then(() => {
+    console.log("Database connection is established");
+    app.listen(7777, () => {
+      console.log("Server is successfully listening on the port 7777....");
+    });
+  })
+  .catch((err) => {
+    console.error("Database can't be connected!!");
+  });
 
-app.use("/", (err, req, res, next) => {
-  if (err) {
-    // Log error
-    res.status(501).send("Something went wrong");
-  }
-});
+// app.use("/", (err, req, res, next) => {
+//   if (err) {
+//     res.status(501).send("Something went wrong");
+//   }
+// });
+
+// app.get("/getUserData", (req, re) => {
+//   // try {
+//   // Logic of DB call and get user data
+//   throw new error("sdfggdf");
+//   res.send("User data sent");
+//   // } catch (err) {
+//   //   res.status(500).send("Some error contact support team");
+//   // }
+// });
+
+// app.use("/", (err, req, res, next) => {
+//   if (err) {
+//     // Log error
+//     res.status(501).send("Something went wrong");
+//   }
+// });
 
 // const { adminAuth, userAuth } = require("./middlewares/auth");
 
@@ -77,7 +107,3 @@ app.use("/", (err, req, res, next) => {
 //     res.send("5th Response!!");
 //   },
 // );
-
-app.listen(7777, () => {
-  console.log("Server is successfully listening on the port 7777....");
-});

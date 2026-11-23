@@ -35,3 +35,17 @@
 - Difference app.use and app.all
 - Write a dummy auth middleware for admin
 - Write a dummy auth middleware for all user routes, except /user/login
+- Error handling useing app.use("/", (err, req, res, next) => {})
+
+- Create a free cluster on MongoDB official website (Mongo Atlas)
+- Install mongoose library
+- Conect your application to the Database "Connection-url/"devTinder
+- Call the connectDB function and connect to database before starting application on 7777
+- Create a userSchema and user Model
+- Create POST /signup API to add data to database
+- Push some documents using API calls from postman
+- Error handling using try, catch
+
+- JS Object vs JSON (difference)
+- Add the express.json middleware to your app
+- Make your signup API dynamic to recieve data fron end users
