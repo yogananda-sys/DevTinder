@@ -25,7 +25,11 @@ app.get("/userId", async (req, res) => {
   try {
     const user = await User.findById({ _id: userId }).exec();
     // const user = await User.findById(userId).exec();
-    res.send(user);
+    if (user.length === 0) {
+      res.send("User not found");
+    } else {
+      res.send(user);
+    }
   } catch (err) {
     res.status(400).send("Something went wrong!");
   }
@@ -59,6 +63,83 @@ app.get("/feed", async (req, res) => {
     res.send(users);
   } catch (err) {
     res.status(400).send("Something went wrong!");
+  }
+});
+
+// Delete a user
+app.delete("/delete", async (req, res) => {
+  const id = req.body.id;
+  console.log(id);
+  try {
+    const user = await User.findByIdAndDelete(id);
+
+    if (!user) {
+      res.send("User not found");
+    } else {
+      res.send("User deleted successfully!");
+    }
+  } catch (err) {
+    res.status(400).send("Something went wrong!");
+  }
+});
+
+//Update a user
+app.patch("/update", async (req, res) => {
+  const userId = req.body.userId;
+  const data = req.body;
+  try {
+    const user = await User.findByIdAndUpdate(userId, data);
+    if (!user) {
+      res.send("User not found");
+    } else {
+      res.send("User updated successfylluy!!");
+    }
+  } catch (err) {
+    res.send("Something went wrong");
+  }
+});
+
+//Update a user by options
+app.patch("/updateOpt", async (req, res) => {
+  const userId = req.body.userId;
+  const data = req.body;
+  try {
+    const user = await User.findByIdAndUpdate(userId, data, {
+      returnDocument: "before",
+    });
+    console.log(user);
+    if (!user) {
+      res.send("User not found");
+    } else {
+      res.send("User updated Options successfylluy!!");
+    }
+  } catch (err) {
+    res.send("Something went wrong");
+  }
+});
+
+//Update a user by email ID
+app.patch("/updatemail", async (req, res) => {
+  const userEmail = req.body.emailId;
+  const data = req.body;
+  try {
+    const user = await User.findOneAndUpdate(
+      { emailId: userEmail },
+      data,
+      {
+        lean: false,
+      },
+      { returnDocument: "after" },
+      { new: false },
+    );
+    console.log(user);
+    if (!user) {
+      res.send("User not found");
+    } else {
+      res.send("User updated  successfylluy!!");
+    }
+  } catch (err) {
+    res.send("Something went wrong");
   }
 });
 
