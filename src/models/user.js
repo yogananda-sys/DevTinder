@@ -13,7 +13,7 @@ const userSchema = new mongoose.Schema(
       trim: true,
       validate(value) {
         if (!validator.isEmail(value)) {
-          throw new Error("Email address is not valid");
+          throw new Error("Invalid email address: " + value);
         }
       },
     },
@@ -22,31 +22,35 @@ const userSchema = new mongoose.Schema(
       required: true,
       validate(value) {
         if (!validator.isStrongPassword(value)) {
-          throw new Error("Enter Strong Password");
+          throw new Error("Enter a Strong Password: " + value);
         }
       },
     },
     age: { type: Number, min: 18 },
     gender: {
       type: String,
-      validate(val) {
-        if (!["male", "female", "others"].includes(val)) {
-          throw new Error("Gender is not valid");
-        }
+      enum: {
+        values: ["male", "female", "other"],
+        message: `{VALUE} is not a valid gender type`,
       },
+      // validate(val) {
+      //   if (!["male", "female", "others"].includes(val)) {
+      //     throw new Error("Gender data is not valid");
+      //   }
+      // },
     },
     photoUrl: {
       type: String,
-      default: "avatar-profile.jpg",
+      default: "https://geographyandyou.com/images/user-profile.png",
       validate(value) {
         if (!validator.isURL(value)) {
-          throw new Error("Photo URL is not valid");
+          throw new Error("Invalid Photo URL: " + value);
         }
       },
     },
     about: {
       type: String,
-      default: "This information is required for application validation",
+      default: "This is a default about of the user!",
     },
     skills: [String],
   },
