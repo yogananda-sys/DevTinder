@@ -1,4 +1,4 @@
-ES-3 | Creating our Express Server
+# ES-3 | Creating our Express Server
 
 - create a repository
 - Intialize the repository
@@ -15,7 +15,7 @@ ES-3 | Creating our Express Server
   => ^ Auto upadte for any minor and patch changes happended
   => ~ Auto Update only patch changes happended
 
-ES-4 | Routing & Request Handlers
+# ES-4 | Routing & Request Handlers
 
 - Initialize git
 - .gitignore
@@ -30,7 +30,7 @@ ES-4 | Routing & Request Handlers
 - Reading the query params in the routes
 - Reading the dynamic routes
 
-ES-5 | Middlewares & Error Handlers
+# ES-5 | Middlewares & Error Handlers
 
 - Multiple route handlers - play with code
 - next()
@@ -43,7 +43,7 @@ ES-5 | Middlewares & Error Handlers
 - Write a dummy auth middleware for all user routes, except /user/login
 - Error handling useing app.use("/", (err, req, res, next) => {})
 
-ES-6 | Database, Schema & Models | Mongoose
+# ES-6 | Database, Schema & Models | Mongoose
 
 - Create a free cluster on MongoDB official website (Mongo Atlas)
 - Install mongoose library
@@ -54,7 +54,7 @@ ES-6 | Database, Schema & Models | Mongoose
 - Push some documents using API calls from postman
 - Error handling using try, catch
 
-ES-7 | Diving into the APIs
+# ES-7 | Diving into the APIs
 
 - JS Object vs JSON (difference)
 - Add the express.json middleware to your app
@@ -70,7 +70,7 @@ ES-7 | Diving into the APIs
 - What are options in a Model.findOneAndUpdate method , explore more about it
 - API - Update the user with email ID
 
-ES-8 | Data Sanitization and Schema Validation
+# ES-8 | Data Sanitization and Schema Validation
 
 - Explore schematype option from the documentation
 - Add required, unique, lowercase, min, minLength, trim
@@ -84,7 +84,7 @@ ES-8 | Data Sanitization and Schema Validation
 - Explore validator library function and use the validator functions for password, email, photoUrl
 - NEVER TRUST req.body
 
-ES-9 | Encryping Passwords
+# ES-9 | Encryping Passwords
 
 - Validate data in Signup API
 - Install bcrypt package
@@ -92,7 +92,7 @@ ES-9 | Encryping Passwords
 - Create Login API
 - Compare passwords and throw errors if email or password is invalid
 
-ES-10 | Authentication JWT & Cookies
+# ES-10 | Authentication JWT & Cookies
 
 - install cookie-parser
 - just send a dummy cookie to user
@@ -105,3 +105,17 @@ ES-10 | Authentication JWT & Cookies
 - Set the expiry of JWT token and cookies to 7 days
 - Create userSchema method to getJWT()
 - Create UserSchema method to comparepassword(passwordInputByUser)
+
+# ES-11 | Divining into the APIs & Express Router
+
+- Explore tinder APIs
+- Create a list all API you can think of in Dev Tinder
+- Group multiple routes under repective routers
+- Read documentation for express.Router
+- Create routes folder for managing auth,profile, request routers
+- create authRouter, profileRouter, requestRouter
+- Import these routers in app.js
+- Create POST /logout API
+- Create PATCH /profile/edit
+- Create PATCH /profile/password API => forgot password API
+- Make you validate all data in every POST, PATCH apis
