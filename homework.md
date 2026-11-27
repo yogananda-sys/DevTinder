@@ -118,4 +118,4 @@
 - Create POST /logout API
 - Create PATCH /profile/edit
 - Create PATCH /profile/password API => forgot password API
-- Make you validate all data in every POST, PATCH apis
+- Make you validate all data in every POST, PATCH APIs
