@@ -1,3 +1,5 @@
+ES-3 | Creating our Express Server
+
 - create a repository
 - Intialize the repository
 - node_modules, package.json, package-lock.json
@@ -13,6 +15,8 @@
   => ^ Auto upadte for any minor and patch changes happended
   => ~ Auto Update only patch changes happended
 
+ES-4 | Routing & Request Handlers
+
 - Initialize git
 - .gitignore
 - Create a remote repo on github
@@ -26,6 +30,8 @@
 - Reading the query params in the routes
 - Reading the dynamic routes
 
+ES-5 | Middlewares & Error Handlers
+
 - Multiple route handlers - play with code
 - next()
 - next function and errors along with res.send()
@@ -37,6 +43,8 @@
 - Write a dummy auth middleware for all user routes, except /user/login
 - Error handling useing app.use("/", (err, req, res, next) => {})
 
+ES-6 | Database, Schema & Models | Mongoose
+
 - Create a free cluster on MongoDB official website (Mongo Atlas)
 - Install mongoose library
 - Conect your application to the Database "Connection-url/"devTinder
@@ -45,6 +53,8 @@
 - Create POST /signup API to add data to database
 - Push some documents using API calls from postman
 - Error handling using try, catch
+
+ES-7 | Diving into the APIs
 
 - JS Object vs JSON (difference)
 - Add the express.json middleware to your app
@@ -60,6 +70,8 @@
 - What are options in a Model.findOneAndUpdate method , explore more about it
 - API - Update the user with email ID
 
+ES-8 | Data Sanitization and Schema Validation
+
 - Explore schematype option from the documentation
 - Add required, unique, lowercase, min, minLength, trim
 - Add default
@@ -72,8 +84,24 @@
 - Explore validator library function and use the validator functions for password, email, photoUrl
 - NEVER TRUST req.body
 
+ES-9 | Encryping Passwords
+
 - Validate data in Signup API
 - Install bcrypt package
 - Create PasswordHash using bcrypt.hash and save the user is encrypted password
 - Create Login API
 - Compare passwords and throw errors if email or password is invalid
+
+ES-10 | Authentication JWT & Cookies
+
+- install cookie-parser
+- just send a dummy cookie to user
+- create GET /profile APi and check if you get the cookie back
+- install jsonwebtoken
+- IN login API, after email and password validation, create e JWT token and send it to user in cookies
+- read the cookies inside your profile API and find the logged in user
+- userAuth Middleware
+- Add the userAuth middle ware in profile API and a new sendConnectionRequest API
+- Set the expiry of JWT token and cookies to 7 days
+- Create userSchema method to getJWT()
+- Create UserSchema method to comparepassword(passwordInputByUser)

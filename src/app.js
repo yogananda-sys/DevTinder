@@ -1,13 +1,14 @@
 const express = require("express");
 const connectDB = require("./config/database");
-
+const app = express();
 const User = require("./models/user");
 const bcrypt = require("bcrypt");
 const { validateSignUpData } = require("./utils/validation");
-
-const app = express();
+const cookieParser = require("cookie-parser");
+const jwt = require("jsonwebtoken");
 
 app.use(express.json());
+app.use(cookieParser());
 
 app.post("/signup", async (req, res) => {
   //console.log(req.body);
@@ -38,7 +39,6 @@ app.post("/signup", async (req, res) => {
 });
 
 // Create LOGIN API
-
 app.post("/login", async (req, res) => {
   try {
     const { emailId, password } = req.body;
@@ -47,7 +47,7 @@ app.post("/login", async (req, res) => {
 
     if (!user) {
       throw new Error(
-        "Invalid credentials. Please check your email and password! Email",
+        "Invalid credentials. Please check your email and password!",
       );
     }
 
@@ -57,8 +57,38 @@ app.post("/login", async (req, res) => {
         "Invalid credentials. Please check your email and password!",
       );
     }
+    const token = await jwt.sign({ userId: user._id }, "DEV@Secret$951#");
 
-    res.send("Login successful!");
+    res.cookie("token", token);
+
+    res.send("Login successfull!");
+  } catch (err) {
+    res.status(400).send("ERROR : " + err.message);
+  }
+});
+
+app.get("/profile", async (req, res) => {
+  try {
+    const cookies = req.cookies;
+
+    const { token } = cookies;
+
+    if (!token) {
+      throw new Error("Token not found");
+    }
+
+    const decodedToken = await jwt.verify(token, "DEV@Secret$951#");
+
+    const { userId } = decodedToken;
+
+    //console.log("Logged in user ID:" + userId);
+    const user = await User.findById(userId).exec();
+
+    if (!user) {
+      throw new Error("User not found");
+    }
+
+    res.send(user);
   } catch (err) {
     res.status(400).send("ERROR : " + err.message);
   }
