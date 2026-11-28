@@ -18,6 +18,9 @@
 
 ## connectionRequestRouter
 
+- POST /request/send/:status/:userId 
+- POST /request/review/:status/:requestId
+
 - POST /likes/:userId
 - POST /requests/:requestId/accept
 - POST /requests/:requestId/ignore
